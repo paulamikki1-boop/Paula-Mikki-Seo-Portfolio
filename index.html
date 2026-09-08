@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paula Mikki Tindoc — SEO Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+Thai:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -13,6 +13,7 @@
   --accent:#0A7B5E;--accent-light:#E6F4F0;--accent-mid:#C0E0D8;
   --border:#E5E7EB;--warn:#D97706;--r:10px;
   --mono:'DM Mono',monospace;--sans:'Inter',sans-serif;
+  --query:'Inter','Noto Sans Thai',sans-serif;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -30,6 +31,25 @@ nav{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.93);backdrop-
 .hero h1{font-size:clamp(2rem,5vw,3.25rem);font-weight:300;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.25rem}
 .hero h1 strong{font-weight:600}
 .hero-sub{font-size:16px;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+
+/* HERO — two column with portrait */
+.hero-grid{display:grid;grid-template-columns:1fr 220px;gap:3rem;align-items:start}
+.hero-portrait{margin:0}
+.hero-portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);border:1px solid var(--border);background:var(--border)}
+.hero-portrait figcaption{margin-top:.7rem;font-size:11px;font-family:var(--mono);line-height:1.6;color:var(--muted);padding-left:.6rem;border-left:2px solid var(--accent)}
+
+/* QUERY STRIP — real queries, real rank movement */
+.qstrip{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.25rem}
+.qstrip-head{padding:.85rem 1.25rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.qstrip-title{font-size:13px;font-weight:600;color:var(--text)}
+.qstrip-src{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.qrow{padding:.85rem 1.25rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto auto;gap:1rem;align-items:center}
+.qrow:last-child{border-bottom:none}
+.qterm{font-family:var(--query);font-size:15px;color:var(--text);line-height:1.45}
+.qterm span{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:.2rem;letter-spacing:.02em}
+.qvol{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.qmove{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-light);padding:3px 8px;border-radius:4px;white-space:nowrap}
+.qnote{font-size:13px;color:var(--muted);line-height:1.7;max-width:620px;margin-bottom:2.5rem}
 
 /* STATS STRIP */
 .stats-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:4rem}
@@ -114,11 +134,64 @@ nav{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.93);backdrop-
 .grid-section-label span{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .grid-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* ABOUT */
+/* GEO SECTION */
+.geo-section{max-width:900px;margin:0 auto;padding:0 2rem 5rem}
+.geo-hero{background:var(--text);border-radius:var(--r);padding:2rem 2.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.geo-hero::before{content:'GEO & AEO';position:absolute;right:-10px;top:-20px;font-family:var(--mono);font-size:5rem;font-weight:700;color:rgba(255,255,255,.04);line-height:1;pointer-events:none}
+.geo-eyebrow{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:.75rem}
+.geo-title{font-size:1.3rem;font-weight:600;color:#fff;line-height:1.3;margin-bottom:.5rem}
+.geo-sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.65;max-width:560px;margin-bottom:1.5rem}
+.geo-collab{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.7);font-family:var(--mono);margin-bottom:1.5rem}
+.geo-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border-radius:8px;overflow:hidden}
+.geo-stat{background:rgba(255,255,255,.04);padding:.85rem 1rem}
+.geo-stat-val{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:#fff;line-height:1;margin-bottom:.25rem}
+.geo-stat-val .u{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.5)}
+.geo-stat-lbl{font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.03em}
+
+/* CHART */
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem}
+.chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem}
+.chart-title{font-size:13px;font-weight:600;color:var(--text)}
+.chart-legend{display:flex;gap:1rem}
+.chart-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.chart-legend-dot{width:8px;height:8px;border-radius:50%}
+.chart-svg-wrap{width:100%;overflow:hidden}
+
+/* TOP POSTS */
+.top-posts{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.5rem}
+.top-posts-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.top-posts-title{font-size:13px;font-weight:600;color:var(--text)}
+.top-posts-sub{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.post-row{padding:.85rem 1.25rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto auto auto;gap:1rem;align-items:center}
+.post-row:last-child{border-bottom:none}
+.post-slug{font-family:var(--mono);font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.post-slug a{color:var(--text);text-decoration:none}
+.post-slug a:hover{color:var(--accent)}
+.post-pill{font-family:var(--mono);font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.pill-clicks{background:var(--accent-light);color:var(--accent)}
+.pill-impr{background:#EFF6FF;color:#2563EB}
+.pill-pos{background:#F3F4F6;color:var(--muted)}
+
+/* PROCESS SECTION */
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.process-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem}
+.process-num{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.process-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:.4rem}
+.process-body{font-size:12px;color:var(--muted);line-height:1.6}
+.process-example{font-family:var(--mono);font-size:11px;background:var(--bg);border-radius:5px;padding:.5rem .75rem;margin-top:.6rem;color:var(--text);border-left:2px solid var(--accent)}
+
+@media(max-width:640px){
+  .geo-stats{grid-template-columns:repeat(2,1fr)}
+  .process-grid{grid-template-columns:1fr}
+  .post-row{grid-template-columns:1fr auto}
+}
+
 .about-strip{border-top:1px solid var(--border);padding:4rem 2rem;max-width:900px;margin:0 auto 0}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
 .about-block h2{font-size:11px;font-family:var(--mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
 .about-block p{font-size:14px;color:var(--muted);line-height:1.75}
+.tools-block{border-top:1px solid var(--border);padding-top:1.75rem;margin-top:2.5rem}
+.tools-block h2{font-size:11px;font-family:var(--mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:.75rem}
 .chip{font-family:var(--mono);font-size:11px;background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:3px 9px;color:var(--muted)}
 
@@ -127,8 +200,19 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-fa
 footer a{color:var(--accent);text-decoration:none}
 
 /* RESPONSIVE */
+@media(max-width:760px){
+  .hero-grid{grid-template-columns:1fr;gap:1.75rem}
+  .hero-portrait{order:-1;max-width:132px}
+  .hero-portrait img{aspect-ratio:1/1;border-radius:50%}
+  .hero-portrait figcaption{display:none}
+  .qrow{grid-template-columns:1fr auto;gap:.5rem .75rem}
+  .qvol{grid-column:1}
+}
 @media(max-width:640px){
   nav{padding:0 1rem}
+  .nav-name{flex-shrink:0}
+  .nav-links{gap:.8rem}
+  .nav-links a{font-size:11.5px;white-space:nowrap}
   .hero{padding:3rem 1rem 2rem}
   .section{padding:0 1rem 3rem}
   .case-grid{grid-template-columns:1fr}
@@ -142,16 +226,59 @@ footer a{color:var(--accent);text-decoration:none}
 <nav>
   <a href="#" class="nav-name">paula.mikki</a>
   <div class="nav-links">
-    <a href="#work">Work</a>
+    <a href="#work">SEO Work</a>
+    <a href="#geo">GEO & AEO</a>
     <a href="#about">About</a>
     <a href="mailto:paulamikki1@gmail.com">Contact</a>
   </div>
 </nav>
 
+<!-- ── ABOUT (top) ─────────────────────────────────────────────── -->
+<!-- ── OPENING: hero + about, merged ──────────────────────────── -->
 <header class="hero">
-  <p class="eyebrow">SEO Specialist · Multilingual Content Optimisation</p>
-  <h1>Search results that<br><strong>move the needle.</strong></h1>
-  <p class="hero-sub">Optimising content across English, Vietnamese, and Thai markets — tracking the metrics that matter: impressions, clicks, and rankings that convert.</p>
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">SEO Specialist · English, Vietnamese &amp; Thai</p>
+      <h1>I find pages Google has quietly stopped showing.</h1>
+      <p class="hero-sub" style="margin-bottom:1rem">I'm Paula. I optimise English articles for a finance education library at Vantage Markets, rebuild them for Vietnamese and Thai search, and fix the technical layer underneath — URL structure, broken links, schema, internal linking. An article can be accurate, well written, and still invisible, and the cause is usually in one of those three places.</p>
+      <p class="hero-sub" style="margin-bottom:1.5rem">Alongside that I've written 1,000+ GEO/AEO posts for a newly launched answer-engine category, and built the AI-assisted workflows behind a localisation programme covering 7 languages.</p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem">
+        <a href="mailto:paulamikki1@gmail.com" style="font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;background:var(--accent-light);padding:4px 11px;border-radius:5px">paulamikki1@gmail.com</a>
+        <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;background:var(--accent-light);padding:4px 11px;border-radius:5px">LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <figure class="hero-portrait">
+      <img src="paula.jpg" alt="Paula Mikki Tindoc">
+      <figcaption>Kuala Lumpur — relocating to Germany, Oct 2026. Open to remote part-time roles.</figcaption>
+    </figure>
+  </div>
+
+  <div class="qstrip">
+    <div class="qstrip-head">
+      <span class="qstrip-title">Queries that moved, and where they landed</span>
+      <span class="qstrip-src">SEMrush</span>
+    </div>
+
+    <!-- ── Swap rows as SEMrush data comes in. Keep the 3-div pattern below. ── -->
+    <div class="qrow">
+      <div class="qterm">เทรดทอง forex<span>Thai — gold trading</span></div>
+      <div class="qvol">1,300/mo</div>
+      <div class="qmove">#17 → #1</div>
+    </div>
+    <div class="qrow">
+      <div class="qterm">divergence แปล<span>Thai — the English term plus “translate”</span></div>
+      <div class="qvol">30/mo</div>
+      <div class="qmove">#30 → #1</div>
+    </div>
+    <div class="qrow">
+      <div class="qterm">free margin ติดลบ<span>Thai — negative free margin</span></div>
+      <div class="qvol">40/mo</div>
+      <div class="qmove">#8 → #1</div>
+    </div>
+  </div>
+
+  <p class="qnote">That second one is the whole job in miniature. Thai traders search the English word plus “แปล” — translate — which tells you they don't know the concept yet and want a definition first. You won't find that in English keyword research.</p>
 
   <div class="stats-strip">
     <div class="stat-cell">
@@ -159,20 +286,38 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="stat-label">Pages optimised</div>
     </div>
     <div class="stat-cell">
+      <div class="stat-value">1k<span class="unit">+</span></div>
+      <div class="stat-label">GEO/AEO posts written</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">477k</div>
+      <div class="stat-label">QQ impressions (12 wks)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">10</div>
+      <div class="stat-label">Thai keywords at #1</div>
+    </div>
+    <div class="stat-cell">
       <div class="stat-value">7</div>
       <div class="stat-label">Markets localised</div>
     </div>
-    <div class="stat-cell">
-      <div class="stat-value">814<span class="unit">%</span></div>
-      <div class="stat-label">Peak clicks increase</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-value">13k<span class="unit">%</span></div>
-      <div class="stat-label">Peak impr. via URL fix</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-value">3</div>
-      <div class="stat-label">Languages (EN/VI/TH)</div>
+  </div>
+
+  <div id="about" class="tools-block">
+    <h2>Tools &amp; skills</h2>
+    <div class="chips">
+      <span class="chip">SEMrush</span>
+      <span class="chip">Google Search Console</span>
+      <span class="chip">Technical SEO audits</span>
+      <span class="chip">Keyword research</span>
+      <span class="chip">Schema markup</span>
+      <span class="chip">URL optimisation</span>
+      <span class="chip">Hreflang (7 markets)</span>
+      <span class="chip">Multilingual SEO</span>
+      <span class="chip">GEO / AEO</span>
+      <span class="chip">AI prompting workflows</span>
+      <span class="chip">WordPress</span>
+      <span class="chip">Excel / SPSS</span>
     </div>
   </div>
 </header>
@@ -227,7 +372,12 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>The standout multilingual result. A Vietnamese localisation of the forex sessions article drove a 9× increase in weekly clicks over 6 weeks — demonstrating how localised keyword intent matching, not just translation, drives traffic growth.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title tag, meta, H1 — all targeting "giờ phiên Á/Âu/Mỹ theo giờ Việt Nam" (UTC+7)</li>
+            <li>Restructured H2/H3 session headings to carry both the Phiên Á/Âu/Mỹ aliases and UTC+7 times — headings now answer the query directly</li>
+            <li>Added UTC+7 quick-reference table (4 sessions + Âu–Mỹ overlap highlighted) targeting top GSC impression queries</li>
+            <li>Updated 4 FAQs to Vietnam-time focus · added 2 new FAQs, including one directly targeting the #2 GSC impression query</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/vi/academy/forex-trading-sessions/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -266,7 +416,11 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Impressions grew nearly 9× in 6 weeks after VI localisation — from 1,299 to 10,749 avg weekly impressions. A standout example of how matching local search language around gold trading keywords unlocked latent search demand.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title, meta, and headings for VI keyword targeting</li>
+            <li>Updated all internal links to use /vi/ locale paths</li>
+            <li>Avg weekly impressions 1,299 → 10,749 (+727%) in 6 weeks</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/vi/academy/gold-xau/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -304,7 +458,12 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>URL slug restructure + VI keyword localisation. Impressions grew 4× as the page began ranking for Vietnamese TradingView queries after the slug changed from <code style="font-size:11px;background:var(--border);padding:1px 4px;border-radius:3px">/academy-how-to-use-tradingview/</code> to <code style="font-size:11px;background:var(--border);padding:1px 4px;border-radius:3px">/how-to-use-tradingview/</code>.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>URL: <code style="font-size:10px;background:var(--border);padding:1px 3px;border-radius:2px">/academy-how-to-use-tradingview/</code> → <code style="font-size:10px;background:var(--border);padding:1px 3px;border-radius:2px">/how-to-use-tradingview/</code></li>
+            <li>Rewrote title, meta, and headings · rewrote introducing paragraph</li>
+            <li>Added new sections · restructured image layout · added FAQ section</li>
+            <li>Impressions 166 → 635 (+282%) · clicks +238% in 6 weeks</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/vi/academy/how-to-use-tradingview/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -342,7 +501,11 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Low-traffic article unlocked significant impression growth after VI keyword targeting. Weekly impressions grew 5× — a good example of optimising niche financial index content for local Vietnamese search intent.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title, meta, and headings for VI keyword targeting</li>
+            <li>Rewrote the introducing paragraph · added FAQ section</li>
+            <li>Weekly impressions 136 → 707 (+419%) · clicks +467% in 6 weeks</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/vi/academy/russell-2000-index/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -380,7 +543,11 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Clicks tripled over 6 weeks post-optimisation. Steady impression growth alongside strong click improvement indicates both improved rankings and a higher-CTR title/meta combination after VI localisation.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title, meta, and headings for VI keyword targeting</li>
+            <li>Added FAQ section targeting People Also Ask queries</li>
+            <li>Clicks tripled in 6 weeks (+218%) · impression growth +37%</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/vi/academy/16-top-currency-pairs/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -418,7 +585,11 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Weekly impressions grew from 127 to 612 in just 5 weeks — a nearly 5× lift driven by VI keyword targeting on a previously low-visibility index article for the Vietnamese market.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title, meta, and headings for VI keyword targeting</li>
+            <li>Rewrote opening paragraph · added FAQ section</li>
+            <li>Weekly impressions 127 → 612 (+383%) · clicks +250% in 5 weeks</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/vi/academy/hang-seng-index/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -456,7 +627,11 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Clicks grew 9× in 4 weeks after TH optimisation. Impressions more than tripled. A fast-responding example of Thai keyword targeting working on a lower-competition financial topic.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title, meta, and all headings to match Thai search intent</li>
+            <li>Added 3 new sections — definitional hook for top impression query, stock vs forex sentiment distinction, and XAU/USD sentiment expanded for gold traders</li>
+            <li>Replaced all 5 FAQs with intent-matched queries (sentiment แปลว่า, market sentiment คือ, sentiment หุ้น vs forex, XAU/USD, ตัวชี้วัด sentiment)</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/forex-market-sentiment/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -494,7 +669,10 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Clicks more than doubled in 3 weeks on a high-impression TH article. Solid CTR improvement story — impressions were already decent, optimisation lifted clicks by improving title and meta alignment with Thai search intent.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title, meta — restructured article, added images and internal links</li>
+            <li>Added 5 new sections (existing content untouched): chart definition hook targeting 94-impression GSC gap; chart types (Candlestick/Line/Bar); step-by-step reading guide for beginner intent; charting tools section (MT4/MT5/TradingView) covering 66-impression query; 7-question FAQ for PAA and featured snippet slots</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/forex-chart-analysis-techniques/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -541,7 +719,12 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>URL slug restructure from <code style="font-size:11px;background:var(--border);padding:1px 4px;border-radius:3px">/leveraging-forex-sessions/</code> to <code style="font-size:11px;background:var(--border);padding:1px 4px;border-radius:3px">/forex-sessions/</code> caused impressions to surge from 13 to 637 avg per week in 2 weeks. SEMrush confirms the page went from ranking for just 2 keywords to 19 — the old slug was actively suppressing a fully-written article from being found.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>URL: <code style="font-size:10px;background:var(--border);padding:1px 3px;border-radius:2px">/leveraging-forex-sessions/</code> → <code style="font-size:10px;background:var(--border);padding:1px 3px;border-radius:2px">/forex-sessions/</code> — old slug was suppressing all Thai session queries</li>
+            <li>Rewrote title, meta — full article restructure with new images and internal links</li>
+            <li>Rewrote entire body, retaining and repositioning useful existing content</li>
+            <li>Result: ranking keywords 2 → 19 (+850%) within 2 weeks (SEMrush)</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/forex-sessions/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -588,7 +771,13 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Rewrote title tag, H1, and meta description to target high-intent queries. Added convergence section, Thai meaning of divergence, and Awesome Oscillator content. Expanded MACD Divergence section with worked examples. Added a divergence comparison table targeting Featured Snippet slots and 11 internal links. Clicks grew 3× over 3 weeks, confirmed by SEMrush showing 3 new keyword gains including "divergence แปล" jumping from #30 to #1.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title tag, H1, and meta to target the four divergence types and signal interpretation</li>
+            <li>Added new sections: Convergence, Thai meaning of divergence, Awesome Oscillator, MACD worked example, divergence comparison table (Featured Snippet / AI Overview target)</li>
+            <li>Added 2 new trade examples (XAU/USD, GBP/USD), expanded cautions section with ADX confirmation</li>
+            <li>FAQ grown 5 → 7 questions · 4 references added · 11 internal links placed</li>
+            <li>Original Thai content preserved — reorganised and supplemented, not replaced</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/what-is-divergence-forex/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -626,7 +815,11 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>URL slug change from <code style="font-size:11px;background:var(--border);padding:1px 4px;border-radius:3px">/forex-trading-2023/</code> to <code style="font-size:11px;background:var(--border);padding:1px 4px;border-radius:3px">/forex-trading/</code> caused impressions to explode from 9 to 1,196 per week within 1 week — a dramatic demonstration of how a dated URL slug actively suppresses a core commercial page's discoverability. Clicks are early-stage; growth expected as rankings solidify.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>URL: <code style="font-size:10px;background:var(--border);padding:1px 3px;border-radius:2px">/forex-trading-2023/</code> → <code style="font-size:10px;background:var(--border);padding:1px 3px;border-radius:2px">/forex-trading/</code></li>
+            <li>Impressions 9 → 1,196/wk (+13,189%) within 1 week — dated slug was suppressing a core commercial page</li>
+            <li>Clicks early-stage; rankings continuing to consolidate</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/forex-trading/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -677,7 +870,13 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Full structural rewrite targeting high-volume margin-related queries. Added Margin Level formula, Used/Free Margin/Equity breakdown, Margin Call vs Stop-Out comparison table, Margin vs Leverage comparison, and a 7-question FAQ. Changed meta title from English to Thai. The page already ranked well on core terms — optimisation held all key positions while expanding top-3 keyword coverage from 4 to 9 terms, with "free margin ติดลบ" jumping from #8 to #1.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Full structural rewrite — meta title changed from English to Thai</li>
+            <li>Kept: margin definition, calculation formula + EUR/USD example</li>
+            <li>Added: Key Points, Margin Level formula, Used/Free Margin/Equity breakdown, Margin Call vs Stop-Out comparison, Margin vs Leverage table, common mistakes, 7-question FAQ, risk warning, disclaimer</li>
+            <li>2 images + 1 infographic marked for design</li>
+            <li>Top-3 keywords grew 4 → 9 · "free margin ติดลบ" #8 → #1 · 2 new keywords entered at #1</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/what-is-margin/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -715,7 +914,13 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Rewrote H1, title, and meta to match "ที่ดีที่สุด/ยอดนิยม" search demand. Added definition section, indicator taxonomy and comparison table, combination guide, trading-style guide, and FAQ. Expanded all 7 original indicators with pros/cons and entry/exit signals, added 3 new indicators (Ichimoku Cloud, Fibonacci Retracement, ADX), and placed 9 internal links. Average position improved from 11.9 to 9.7 — crossing from page 2 into page 1, which directly explains why weekly clicks doubled.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote H1, title, meta — shifted keyword from "น่าสนใจ" to "ที่ดีที่สุด/ยอดนิยม" to match how Thai traders actually search</li>
+            <li>Added: definition section, indicator taxonomy + comparison table, combination guide, trading-style guide, FAQ, risk warning, disclaimer</li>
+            <li>Kept all 7 original indicators — expanded each with pros/cons and entry/exit signals</li>
+            <li>Added 3 new indicators: Ichimoku Cloud, Fibonacci Retracement, ADX</li>
+            <li>Added Vantage MT4/MT5/ProTrader section as product differentiator · 9 internal links · 9 image markers · references (OANDA, StockCharts, CapMint)</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/forex-indicators-every-trader-should-know/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -753,7 +958,11 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Restructured the article with a new title, meta, and headings, adding a new opening section defining "hedging" in Thai, a Leverage &amp; Margin worked example, an asset-type breakdown, and a 7-question FAQ. GSC shows weekly clicks grew 9× over 3 weeks. The page is actively climbing — ranking keywords grew from 9 to 10 and the SEMrush overview shows a consistent keyword count increase through Jul–Aug 2026. Full position improvements expected to consolidate over the coming weeks.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Rewrote title, meta, and headings to match Thai hedging search intent</li>
+            <li>Restructured article with new internal links — rewrote body, keeping and repositioning useful existing content</li>
+            <li>Page is actively climbing — consistent keyword count growth in SEMrush through Jul–Aug 2026</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/what-is-hedging-in-forex/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -802,7 +1011,12 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Structural rewrite reordering content into a beginner journey. Added step-by-step trading guide, XAU/USD definition, physical-gold comparison, technical indicator section, dedicated risk-management section, and session table. Average GSC position dropped from 32.7 to 12.9 — nearly 20 positions — which explains why clicks appeared for the first time. SEMrush confirms 10 gold-trading keywords now ranking at #1, including "เทรดทอง forex" with 1,300 monthly searches.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Structural rewrite — reordered into a beginner trading journey</li>
+            <li>Added: step-by-step guide, XAU/USD definition, physical gold vs CFD comparison, technical indicators section, risk-management section, session timing table</li>
+            <li>Preserved and expanded: economic-factors section, worked trade example, broker-selection reasoning</li>
+            <li>GSC avg position 32.7 → 12.9 · 10 keywords now at #1 · traffic est. +400% (SEMrush)</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/th/academy/how-to-make-benefit-from-forex-gold-trading/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -841,7 +1055,10 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Sustained 3-month result on a high-competition gold trading article. The improvement held across a volatile macro period for gold prices — demonstrating that the gains are structural, not seasonal or spike-driven.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>On-page optimisation targeting "xau usd price" search intent</li>
+            <li>Results sustained across 3 months through a volatile macro period for gold — structural gains, not a spike</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/academy/trading-xauusd-tips-and-strategies/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -879,7 +1096,10 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>Peak clicks result — 13× increase in 2 weeks. One of the earliest optimisations, demonstrating immediate search visibility impact from on-page keyword and search intent alignment.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>On-page keyword and intent alignment — one of the earliest optimisations in the project</li>
+            <li>Clicks 2 → 26 (+1,200%) and impressions 4,910 → 11,011 (+124%) within 2 weeks</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/academy/forex-trading-sessions/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -917,7 +1137,10 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
-          <p>High-traffic platform article. Both clicks and impressions nearly doubled over 4 weeks — a reliable, defensible before/after result on a commercially important page targeting traders actively looking to set up MT5.</p>
+          <ul style="margin:.25rem 0 .75rem 1rem;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5">
+            <li>Title, meta, and on-page optimisation targeting "mt5 login guide" intent</li>
+            <li>Clicks +80% and impressions +86% over 4 weeks on a high-traffic commercial page</li>
+          </ul>
           <a href="https://www.vantagemarkets.com/academy/how-to-use-metatrader-5/" class="story-link" target="_blank" rel="noopener">View live article ↗</a>
         </div>
       </div>
@@ -926,34 +1149,293 @@ footer a{color:var(--accent);text-decoration:none}
   </div><!-- /case-grid -->
 </main>
 
-<!-- ABOUT -->
-<section id="about" class="about-strip">
-  <div class="about-grid">
-    <div class="about-block">
-      <h2>Background</h2>
-      <p>SEO Specialist with hands-on experience in technical audits, keyword research, and content optimisation across English, Vietnamese, and Thai markets at Vantage Markets. I build AI-assisted workflows to scale localised output without sacrificing quality.</p>
-      <p style="margin-top:.75rem">Based in Kuala Lumpur. Open to remote and hybrid roles.</p>
-    </div>
-    <div class="about-block">
-      <h2>Tools &amp; skills</h2>
-      <div class="chips">
-        <span class="chip">SEMrush</span>
-        <span class="chip">Google Search Console</span>
-        <span class="chip">Technical audits</span>
-        <span class="chip">Keyword research</span>
-        <span class="chip">Schema markup</span>
-        <span class="chip">URL optimisation</span>
-        <span class="chip">Multilingual SEO</span>
-        <span class="chip">AI prompting</span>
-        <span class="chip">WordPress</span>
-        <span class="chip">Excel / SPSS</span>
+<!-- ── GEO & AEO SECTION ───────────────────────────────────────── -->
+<section id="geo" class="geo-section">
+
+  <div class="section-header">
+    <span class="section-title">GEO & AEO</span>
+    <span class="section-count">— Quick Questions category · collaborative project</span>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="geo-hero">
+    <div class="geo-eyebrow">Generative Engine Optimisation · Answer Engine Optimisation</div>
+    <div class="geo-title">Quick Questions — A New Content Category<br>Built for AI Overview & People Also Ask</div>
+    <div class="geo-sub">Collaborated with a colleague to launch a new Quick Questions category on Vantage Markets Academy. My colleague set up the category and technical infrastructure; I wrote the GEO/AEO-structured content — 1,000+ short-form posts designed to rank in AI Overviews, featured snippets, and People Also Ask boxes. The category went from zero to 477,000+ impressions within 12 weeks.</div>
+    <div class="geo-collab">👥 Collaborative — content by Paula · category setup by colleague</div>
+    <div class="geo-stats">
+      <div class="geo-stat">
+        <div class="geo-stat-val">1,000<span class="u">+</span></div>
+        <div class="geo-stat-lbl">Posts written</div>
+      </div>
+      <div class="geo-stat">
+        <div class="geo-stat-val">477k</div>
+        <div class="geo-stat-lbl">Impressions · 12 wks</div>
+      </div>
+      <div class="geo-stat">
+        <div class="geo-stat-val">3,601</div>
+        <div class="geo-stat-lbl">Total clicks</div>
+      </div>
+      <div class="geo-stat">
+        <div class="geo-stat-val">#2.2</div>
+        <div class="geo-stat-lbl">Best position (GSC)</div>
       </div>
     </div>
   </div>
+
+  <!-- GROWTH CHART -->
+  <div class="chart-wrap">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">12-Week Growth — Impressions & Clicks</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">From category launch (Jun 2026) · source: Google Search Console</div>
+      </div>
+      <div class="chart-legend">
+        <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#2563EB"></div>Impressions ÷100</div>
+        <div class="chart-legend-item"><div class="chart-legend-dot" style="background:var(--accent)"></div>Clicks</div>
+      </div>
+    </div>
+    <div class="chart-svg-wrap">
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+        <!-- Grid lines -->
+        <line x1="40" y1="20" x2="810" y2="20" stroke="#E5E7EB" stroke-width="1"/>
+        <line x1="40" y1="60" x2="810" y2="60" stroke="#E5E7EB" stroke-width="1"/>
+        <line x1="40" y1="100" x2="810" y2="100" stroke="#E5E7EB" stroke-width="1"/>
+        <line x1="40" y1="140" x2="810" y2="140" stroke="#E5E7EB" stroke-width="1"/>
+        <line x1="40" y1="175" x2="810" y2="175" stroke="#E5E7EB" stroke-width="1"/>
+        <!-- Y labels -->
+        <text x="35" y="24" text-anchor="end" font-size="9" fill="#9CA3AF">900</text>
+        <text x="35" y="64" text-anchor="end" font-size="9" fill="#9CA3AF">650</text>
+        <text x="35" y="104" text-anchor="end" font-size="9" fill="#9CA3AF">400</text>
+        <text x="35" y="144" text-anchor="end" font-size="9" fill="#9CA3AF">150</text>
+        <text x="35" y="179" text-anchor="end" font-size="9" fill="#9CA3AF">0</text>
+        <!-- X labels weeks 1-13 -->
+        <text x="98"  y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W1</text>
+        <text x="156" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W2</text>
+        <text x="214" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W3</text>
+        <text x="272" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W4</text>
+        <text x="330" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W5</text>
+        <text x="388" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W6</text>
+        <text x="446" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W7</text>
+        <text x="504" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W8</text>
+        <text x="562" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W9</text>
+        <text x="620" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W10</text>
+        <text x="678" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W11</text>
+        <text x="736" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W12</text>
+        <text x="794" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W13</text>
+
+        <!-- Scale: max impressions/100 = 882, max clicks = 536 -->
+        <!-- impr/100 mapped to 0-900 range = 155px height (175 to 20) -->
+        <!-- impr scale: (val/900)*155, y = 175 - scaled -->
+        <!-- clicks scale: (val/600)*155, y = 175 - scaled -->
+
+        <!-- IMPRESSIONS LINE (÷100) blue -->
+        <!-- W1:2, W2:2, W3:8, W4:128, W5:98, W6:336, W7:573, W8:575, W9:753, W10:883, W11:705, W12:553, W13:163 -->
+        <polyline
+          fill="none" stroke="#2563EB" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+          points="
+            98,174
+            156,174
+            214,173
+            272,153
+            330,158
+            388,117
+            446,76
+            504,75
+            562,50
+            620,23
+            678,54
+            736,80
+            794,147
+          "/>
+        <!-- Fill under impressions line -->
+        <polygon fill="rgba(37,99,235,0.06)"
+          points="
+            98,175 98,174
+            156,174 214,173
+            272,153 330,158
+            388,117 446,76
+            504,75 562,50
+            620,23 678,54
+            736,80 794,147
+            794,175
+          "/>
+
+        <!-- CLICKS LINE green -->
+        <!-- W1:0, W2:1, W3:4, W4:118, W5:96, W6:288, W7:498, W8:519, W9:477, W10:481, W11:536, W12:413, W13:170 -->
+        <polyline
+          fill="none" stroke="#0A7B5E" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+          points="
+            98,175
+            156,175
+            214,174
+            272,145
+            330,151
+            388,101
+            446,47
+            504,42
+            562,51
+            620,51
+            678,37
+            736,68
+            794,131
+          "/>
+        <!-- Dots on clicks line -->
+        <circle cx="98"  cy="175" r="3" fill="#0A7B5E"/>
+        <circle cx="156" cy="175" r="3" fill="#0A7B5E"/>
+        <circle cx="214" cy="174" r="3" fill="#0A7B5E"/>
+        <circle cx="272" cy="145" r="3" fill="#0A7B5E"/>
+        <circle cx="330" cy="151" r="3" fill="#0A7B5E"/>
+        <circle cx="388" cy="101" r="3" fill="#0A7B5E"/>
+        <circle cx="446" cy="47"  r="3" fill="#0A7B5E"/>
+        <circle cx="504" cy="42"  r="4" fill="#0A7B5E" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="562" cy="51"  r="3" fill="#0A7B5E"/>
+        <circle cx="620" cy="51"  r="3" fill="#0A7B5E"/>
+        <circle cx="678" cy="37"  r="4" fill="#0A7B5E" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="736" cy="68"  r="3" fill="#0A7B5E"/>
+        <circle cx="794" cy="131" r="3" fill="#0A7B5E"/>
+
+        <!-- Peak annotation -->
+        <line x1="678" y1="37" x2="678" y2="20" stroke="#0A7B5E" stroke-width="1" stroke-dasharray="3,2"/>
+        <rect x="645" y="6" width="66" height="14" rx="3" fill="#0A7B5E"/>
+        <text x="678" y="16" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">536 clicks</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- TOP PERFORMING POSTS -->
+  <div class="top-posts">
+    <div class="top-posts-header">
+      <div class="top-posts-title">Top 5 performing posts</div>
+      <div class="top-posts-sub">GSC · last 3 months</div>
+    </div>
+    <div class="post-row">
+      <div class="post-slug"><a href="https://www.vantagemarkets.com/quick-question/how-do-i-trade-forex-in-india/" target="_blank" rel="noopener">how-do-i-trade-forex-in-india</a></div>
+      <span class="post-pill pill-clicks">233 clicks</span>
+      <span class="post-pill pill-impr">13,894 impr</span>
+      <span class="post-pill pill-pos">pos #4.4</span>
+    </div>
+    <div class="post-row">
+      <div class="post-slug"><a href="https://www.vantagemarkets.com/quick-question/why-isnt-my-vantage-login-working/" target="_blank" rel="noopener">why-isnt-my-vantage-login-working</a></div>
+      <span class="post-pill pill-clicks">129 clicks</span>
+      <span class="post-pill pill-impr">17,858 impr</span>
+      <span class="post-pill pill-pos">pos #2.2</span>
+    </div>
+    <div class="post-row">
+      <div class="post-slug"><a href="https://www.vantagemarkets.com/quick-question/where-do-i-find-my-vantage-account-login-details/" target="_blank" rel="noopener">where-do-i-find-my-vantage-account-login-details</a></div>
+      <span class="post-pill pill-clicks">115 clicks</span>
+      <span class="post-pill pill-impr">8,364 impr</span>
+      <span class="post-pill pill-pos">pos #5.5</span>
+    </div>
+    <div class="post-row">
+      <div class="post-slug"><a href="https://www.vantagemarkets.com/quick-question/metatrader-5-login-broker-server/" target="_blank" rel="noopener">metatrader-5-login-broker-server</a></div>
+      <span class="post-pill pill-clicks">102 clicks</span>
+      <span class="post-pill pill-impr">9,969 impr</span>
+      <span class="post-pill pill-pos">pos #5.6</span>
+    </div>
+    <div class="post-row">
+      <div class="post-slug"><a href="https://www.vantagemarkets.com/quick-question/where-can-i-trade-xau-usd-in-india/" target="_blank" rel="noopener">where-can-i-trade-xau-usd-in-india</a></div>
+      <span class="post-pill pill-clicks">101 clicks</span>
+      <span class="post-pill pill-impr">5,594 impr</span>
+      <span class="post-pill pill-pos">pos #5.2</span>
+    </div>
+  </div>
+
+  <!-- PROCESS BREAKDOWN -->
+  <div style="margin-bottom:1rem">
+    <div style="font-size:11px;font-family:var(--mono);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)">How I structured each post — the GEO/AEO formula</div>
+  </div>
+  <div class="process-grid">
+    <div class="process-card">
+      <div class="process-num">Step 01 — Query-matched title</div>
+      <div class="process-title">Write the title as the exact question</div>
+      <div class="process-body">Every post title mirrors the conversational query a user types into Google — or asks ChatGPT. This signals intent clearly to both traditional crawlers and AI models scanning for answer eligibility.</div>
+      <div class="process-example">✓ "What happens if I place an order while the stock market is closed?"<br>✗ "Stock Market Order Handling Guide"</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">Step 02 — Direct-answer opening</div>
+      <div class="process-title">Answer first, explain second</div>
+      <div class="process-body">The answer comes in sentence 1 — completely and concisely — before any elaboration. This targets the AI Overview extraction pattern where Google pulls the most direct answer from the opening of the page body.</div>
+      <div class="process-example">✓ "A stop order triggers a new trade when price reaches a level. A stop loss closes an existing position at a specified level."<br>— answer complete in 2 sentences</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">Step 03 — Layered structure</div>
+      <div class="process-title">Answer → context → nuance</div>
+      <div class="process-body">After the direct answer, a brief elaboration adds context for readers who need more. A final layer covers edge cases or caveats — e.g. slippage risk, gapping markets — without burying the core answer.</div>
+      <div class="process-example">"Why did my stock trade open at a different price?"<br>→ Define slippage (answer)<br>→ When it happens (context)<br>→ How limit orders help (nuance)</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">Step 04 — PAA & AI Overview targeting</div>
+      <div class="process-title">Match real search patterns</div>
+      <div class="process-body">Each post targets a query that appears in People Also Ask boxes, Google autocomplete, or AI Overview answer surfaces. Topic clusters are grouped — e.g. all order-type questions — to build topical authority and enable internal linking.</div>
+      <div class="process-example">Cluster example — Stock Orders:<br>"market order vs limit order" · "what is a stop loss" · "what is slippage" · "orders outside market hours"</div>
+    </div>
+  </div>
+
+  <!-- LIVE EXAMPLES -->
+  <div style="margin:1.5rem 0 1rem">
+    <div style="font-size:11px;font-family:var(--mono);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)">Real examples — annotated</div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+      <div style="background:#F0FDF4;border-bottom:1px solid #BBF7D0;padding:.6rem 1.25rem;display:flex;align-items:center;gap:.5rem">
+        <span style="font-family:var(--mono);font-size:10px;font-weight:600;color:#15803D;letter-spacing:.06em;text-transform:uppercase">Example 1 — Definitional distinction</span>
+      </div>
+      <div style="padding:1rem 1.25rem">
+        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:.5rem">Q: What is the difference between a stop order and a stop loss order?</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:.75rem">A: A stop order (stop-entry order) triggers a new trade when the price reaches a specified level — used to enter a position when a price condition is met. A stop loss is a risk-management order on an existing open position that is designed to close it when the price reaches a specified level. A stop loss does not guarantee that the position will close at the specified price, particularly during fast-moving or gapping markets.</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <span style="font-size:10px;background:var(--accent-light);color:var(--accent);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ Answers in sentence 1</span>
+          <span style="font-size:10px;background:var(--accent-light);color:var(--accent);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ Distinguishes two related terms</span>
+          <span style="font-size:10px;background:var(--accent-light);color:var(--accent);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ Adds caveat (gapping) for accuracy</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+      <div style="background:#EFF6FF;border-bottom:1px solid #BFDBFE;padding:.6rem 1.25rem">
+        <span style="font-family:var(--mono);font-size:10px;font-weight:600;color:#1D4ED8;letter-spacing:.06em;text-transform:uppercase">Example 2 — Concept explanation with market context</span>
+      </div>
+      <div style="padding:1rem 1.25rem">
+        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:.5rem">Q: Why do stock prices sometimes jump when the market opens?</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:.75rem">A: This is called a gap. News released while the market was closed — earnings results, economic data, geopolitical events — causes traders and institutions to reassess a stock's value. When trading resumes, the opening price reflects this new consensus, appearing as a visible gap up or down from the previous day's close. Positions held overnight are exposed to this gap risk.</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <span style="font-size:10px;background:#EFF6FF;color:#1D4ED8;padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ Names the concept first (gap)</span>
+          <span style="font-size:10px;background:#EFF6FF;color:#1D4ED8;padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ Explains mechanism clearly</span>
+          <span style="font-size:10px;background:#EFF6FF;color:#1D4ED8;padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ Risk implication in final sentence</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+      <div style="background:#FEF9E6;border-bottom:1px solid #FDE68A;padding:.6rem 1.25rem">
+        <span style="font-family:var(--mono);font-size:10px;font-weight:600;color:#92400E;letter-spacing:.06em;text-transform:uppercase">Example 3 — Practical how-to with formula</span>
+      </div>
+      <div style="padding:1rem 1.25rem">
+        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:.5rem">Q: How do I calculate the right position size for a stock trade?</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:.75rem">A: Position size can be calculated based on the amount you are prepared to risk and the distance between your entry price and stop-loss level. For example, if you choose to risk $100 and the difference between your entry price and stop-loss price is $2 per share, the position size would be 50 shares. For stock CFDs, also consider the contract specifications, leverage and applicable margin requirements.</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <span style="font-size:10px;background:#FEF9E6;color:#92400E;padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ Formula + worked example</span>
+          <span style="font-size:10px;background:#FEF9E6;color:#92400E;padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ Actionable in 3 sentences</span>
+          <span style="font-size:10px;background:#FEF9E6;color:#92400E;padding:2px 8px;border-radius:4px;font-family:var(--mono);font-weight:500">✓ CFD-specific nuance added</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="background:var(--accent-light);border-radius:7px;padding:1rem 1.25rem;font-size:13px;color:var(--text);line-height:1.7;border-left:2px solid var(--accent)">
+    <strong style="font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.35rem">Result</strong>
+    The category grew from 0 impressions to a peak of 88,000+ impressions in a single week by week 10 (Aug 10–16), with daily clicks reaching 104 at peak. The top post ranked at position #2.25 — indicating AI Overview or featured snippet placement — with 17,858 impressions on a single query.
+  </div>
+
 </section>
 
+
 <footer>
-  <p>paulamikki1@gmail.com &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp; Kuala Lumpur, Malaysia</p>
+  <p>paulamikki1@gmail.com &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp; Kuala Lumpur, Malaysia (relocating to Germany, Oct 2026)</p>
 </footer>
 
 <script>
