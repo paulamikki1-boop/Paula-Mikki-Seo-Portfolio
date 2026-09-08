@@ -9,21 +9,29 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F8F9FA;--surface:#fff;--text:#0D0D0D;--muted:#6B7280;
-  --accent:#0A7B5E;--accent-light:#E6F4F0;--accent-mid:#C0E0D8;
-  --border:#E5E7EB;--warn:#D97706;--r:10px;
+  --bg:#F4F8FC;--surface:#fff;--text:#0B2137;--muted:#5B7185;
+  /* dark blue = structure & branding; light blue = containers */
+  --accent:#0F3A5F;--accent-light:#E7F1FA;--accent-mid:#B4D3EB;
+  --blue:#2472A8;
+  /* green = gains only (percentages, after-bars, rank movement) */
+  --gain:#0A7B5E;--gain-light:#E6F4F0;
+  --border:#DBE7F1;--warn:#D97706;--r:10px;
   --mono:'DM Mono',monospace;--sans:'Inter',sans-serif;
   --query:'Inter','Noto Sans Thai',sans-serif;
 }
 html{scroll-behavior:smooth}
+#work,#geo{scroll-margin-top:76px}
+#about{scroll-margin-top:0}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px}
+nav{position:sticky;top:0;z-index:100;background:rgba(244,248,252,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px}
 .nav-name{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--text);text-decoration:none}
 .nav-links{display:flex;gap:1.5rem}
 .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .15s}
 .nav-links a:hover{color:var(--accent)}
+.nav-links a.nav-cta{display:inline-flex;align-items:center;gap:4px;color:var(--accent);background:var(--accent-light);border:1px solid var(--accent-mid);padding:3px 10px;border-radius:5px;font-size:12.5px}
+.nav-links a.nav-cta:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 
 /* HERO */
 .hero{max-width:900px;margin:0 auto;padding:5rem 2rem 3rem}
@@ -48,7 +56,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.93);backdrop-
 .qterm{font-family:var(--query);font-size:15px;color:var(--text);line-height:1.45}
 .qterm span{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:.2rem;letter-spacing:.02em}
 .qvol{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
-.qmove{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-light);padding:3px 8px;border-radius:4px;white-space:nowrap}
+.qmove{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--gain);background:var(--gain-light);padding:3px 8px;border-radius:4px;white-space:nowrap}
 .qnote{font-size:13px;color:var(--muted);line-height:1.7;max-width:620px;margin-bottom:2.5rem}
 
 /* STATS STRIP */
@@ -70,17 +78,17 @@ nav{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.93);backdrop-
 .section-count{font-family:var(--mono);font-size:11px;color:var(--accent)}
 
 /* GRID */
-.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.25rem}
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.25rem;align-items:start}
 
 /* CARD */
 .case-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
 .case-card[data-hidden]{display:none}
-.case-card:hover{border-color:var(--accent-mid);box-shadow:0 4px 24px rgba(10,123,94,.07)}
+.case-card:hover{border-color:var(--accent-mid);box-shadow:0 4px 24px rgba(15,58,95,.10)}
 .case-card.featured{border-color:var(--accent-mid);border-width:1.5px}
 .badge-featured{display:inline-block;background:var(--accent-light);color:var(--accent);font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-bottom:.6rem}
 
 /* CARD TOP */
-.card-top{padding:1.25rem 1.25rem 1rem;flex:1}
+.card-top{padding:1.25rem 1.25rem 1rem}
 .card-locale{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:2px 8px;font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:.6rem}
 .card-title{font-size:14px;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:.25rem}
 .card-meta{font-size:11px;color:var(--muted);display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-top:.25rem}
@@ -97,15 +105,15 @@ nav{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.93);backdrop-
 .bar-track{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
 .bar-fill{height:100%;border-radius:3px;transition:width 1.1s cubic-bezier(.4,0,.2,1);width:0}
 .bar-fill.before{background:#D1D5DB}
-.bar-fill.after{background:var(--accent)}
+.bar-fill.after{background:var(--gain)}
 .bar-val{font-family:var(--mono);font-size:9px;color:var(--muted);width:44px;text-align:right;flex-shrink:0}
 .delta{font-family:var(--mono);font-size:1rem;font-weight:500;letter-spacing:-.02em}
-.delta.up{color:var(--accent)}
+.delta.up{color:var(--gain)}
 .delta.warn{color:var(--warn)}
 .delta.neu{color:var(--muted)}
 
 /* STORY */
-.card-story{border-top:1px solid var(--border);padding:0}
+.card-story{border-top:1px solid var(--border);padding:0;margin-top:auto}
 .story-btn{width:100%;background:none;border:none;padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;font-family:var(--sans);font-size:12px;color:var(--muted);cursor:pointer;transition:background .15s,color .15s;text-align:left}
 .story-btn:hover{background:var(--bg);color:var(--text)}
 .story-icon{font-size:15px;transition:transform .2s;line-height:1}
@@ -113,26 +121,23 @@ nav{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.93);backdrop-
 .story-body{display:none;padding:.85rem 1.25rem 1.1rem;background:var(--bg);border-top:1px solid var(--border)}
 .story-body.open{display:block}
 .story-body p{font-size:13px;color:var(--muted);line-height:1.65}
-.story-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--accent);text-decoration:none;font-family:var(--mono);margin-top:.75rem}
+.story-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--blue);text-decoration:none;font-family:var(--mono);margin-top:.75rem}
 .story-link:hover{text-decoration:underline}
 
 /* SOURCE LABELS */
 .src-label{font-size:9px;font-family:var(--mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:1px 5px;border-radius:3px}
-.src-gsc{background:#EFF6FF;color:#2563EB}
-.src-sem{background:#F3E8FF;color:#7C3AED}
+.src-gsc{background:var(--accent-light);color:var(--accent)}
+.src-sem{background:var(--accent);color:#fff}
 
 /* SEMRUSH HIGHLIGHT BLOCK */
-.sem-block{background:var(--accent-light);border-radius:7px;padding:.75rem 1rem;margin:0 1.25rem .75rem}
+.sem-block{background:var(--accent-light);border:1px solid var(--accent-mid);border-radius:7px;padding:.75rem 1rem;margin:0 1.25rem .75rem}
 .sem-block-title{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;display:flex;align-items:center;gap:6px}
 .sem-kw-list{display:flex;flex-direction:column;gap:4px}
 .sem-kw{font-size:12px;color:var(--text);display:flex;justify-content:space-between;align-items:center}
 .sem-kw-name{color:var(--muted);font-size:11px;font-family:var(--mono)}
-.sem-kw-move{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent)}
+.sem-kw-move{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--gain)}
 
 /* SECTION DIVIDER */
-.grid-section-label{grid-column:1/-1;display:flex;align-items:center;gap:.75rem;padding:.5rem 0;margin-top:.75rem}
-.grid-section-label span{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.grid-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
 /* GEO SECTION */
 .geo-section{max-width:900px;margin:0 auto;padding:0 2rem 5rem}
@@ -147,6 +152,28 @@ nav{position:sticky;top:0;z-index:100;background:rgba(248,249,250,.93);backdrop-
 .geo-stat-val{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:#fff;line-height:1;margin-bottom:.25rem}
 .geo-stat-val .u{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.5)}
 .geo-stat-lbl{font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.03em}
+
+/* AI OVERVIEW (GSC Generative AI report) */
+.aio-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem}
+.aio-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.aio-title{font-size:1rem;font-weight:600;color:var(--text)}
+.aio-sub{font-size:12px;color:var(--muted);margin-top:.2rem}
+.aio-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--border);border-radius:8px;overflow:hidden;margin-bottom:1.5rem}
+.aio-stat{background:var(--accent-light);padding:.85rem 1rem}
+.aio-stat-val{font-family:var(--mono);font-size:1.25rem;font-weight:500;color:var(--accent);line-height:1;margin-bottom:.3rem}
+.aio-stat-lbl{font-size:10px;color:var(--muted);line-height:1.4}
+.aio-bars{display:flex;align-items:flex-end;gap:3px;height:96px;margin-bottom:.5rem}
+.aio-bar{flex:1;background:var(--accent-mid);border-radius:2px 2px 0 0;position:relative;min-height:2px;transition:height .9s cubic-bezier(.4,0,.2,1)}
+.aio-bar.peak{background:var(--gain)}
+.aio-axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;color:var(--muted);margin-bottom:1.25rem}
+.aio-table{width:100%;border-collapse:collapse;font-size:12px}
+.aio-table th{text-align:left;font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:.5rem .6rem;border-bottom:1px solid var(--border)}
+.aio-table td{padding:.5rem .6rem;border-bottom:1px solid var(--border);color:var(--text)}
+.aio-table td:last-child,.aio-table th:last-child{text-align:right}
+.aio-table .up{font-family:var(--mono);font-weight:600;color:var(--gain)}
+.aio-table tr.total td{font-weight:600;background:var(--accent-light);border-bottom:none}
+.aio-note{font-size:11px;color:var(--muted);line-height:1.6;margin-top:1rem;padding-left:.7rem;border-left:2px solid var(--accent-mid)}
+.aio-lang{font-family:var(--mono);font-size:9.5px;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:1px 5px;border-radius:3px;margin-right:.4rem}
 
 /* CHART */
 .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem}
@@ -211,8 +238,10 @@ footer a{color:var(--accent);text-decoration:none}
 @media(max-width:640px){
   nav{padding:0 1rem}
   .nav-name{flex-shrink:0}
-  .nav-links{gap:.8rem}
+  .nav-links{gap:.65rem}
   .nav-links a{font-size:11.5px;white-space:nowrap}
+  .nav-links a.nav-cta{padding:2px 7px;font-size:11px}
+  .nav-links a[href="mailto:paulamikki1@gmail.com"]{display:none}
   .hero{padding:3rem 1rem 2rem}
   .section{padding:0 1rem 3rem}
   .case-grid{grid-template-columns:1fr}
@@ -226,16 +255,16 @@ footer a{color:var(--accent);text-decoration:none}
 <nav>
   <a href="#" class="nav-name">paula.mikki</a>
   <div class="nav-links">
+    <a href="#about">About</a>
     <a href="#work">SEO Work</a>
     <a href="#geo">GEO & AEO</a>
-    <a href="#about">About</a>
     <a href="mailto:paulamikki1@gmail.com">Contact</a>
+    <a class="nav-cta" href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
   </div>
 </nav>
 
-<!-- ── ABOUT (top) ─────────────────────────────────────────────── -->
 <!-- ── OPENING: hero + about, merged ──────────────────────────── -->
-<header class="hero">
+<header class="hero" id="about">
   <div class="hero-grid">
     <div>
       <p class="eyebrow">SEO Specialist · English, Vietnamese &amp; Thai</p>
@@ -303,7 +332,7 @@ footer a{color:var(--accent);text-decoration:none}
     </div>
   </div>
 
-  <div id="about" class="tools-block">
+  <div id="skills" class="tools-block">
     <h2>Tools &amp; skills</h2>
     <div class="chips">
       <span class="chip">SEMrush</span>
@@ -369,6 +398,16 @@ footer a{color:var(--accent);text-decoration:none}
           <div class="delta up">↑ +168%</div>
         </div>
       </div>
+      <div class="sem-block">
+        <div class="sem-block-title"><span class="src-label src-sem">Semrush</span> 15 May → 8 Sep 2026</div>
+        <div class="sem-kw-list">
+          <div class="sem-kw"><span class="sem-kw-name">Keywords in top 3</span><span class="sem-kw-move">2 → 19</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">Distinct ranking keywords</span><span class="sem-kw-move">27 → 31</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">Est. monthly traffic</span><span class="sem-kw-move">15 → 404</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">giờ mở cửa forex theo giờ VN (320)</span><span class="sem-kw-move">→ #1</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">phiên giao dịch forex (320)</span><span class="sem-kw-move">→ #3</span></div>
+        </div>
+      </div>
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
@@ -412,6 +451,15 @@ footer a{color:var(--accent);text-decoration:none}
           </div>
           <div class="delta up">↑ +727%</div>
         </div>
+      </div>
+      <div class="sem-block">
+        <div class="sem-block-title"><span class="src-label src-sem">Semrush</span> 15 Jun → 8 Sep 2026</div>
+        <div class="sem-kw-list">
+          <div class="sem-kw"><span class="sem-kw-name">xau (60,500 vol)</span><span class="sem-kw-move">#4 → #1</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">xau là gì (480)</span><span class="sem-kw-move">→ #4</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">AI Overview impressions <span class="src-label src-gsc">GSC</span></span><span class="sem-kw-move">826 → 2,287</span></div>
+        </div>
+        <p style="font-size:10.5px;color:var(--muted);line-height:1.55;margin-top:.6rem;font-family:var(--mono)">Semrush's traffic estimate for this page fell as it rose to #1 — a model/SERP-feature artefact, not a traffic loss. GSC impressions are the reliable read here.</p>
       </div>
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
@@ -538,6 +586,16 @@ footer a{color:var(--accent);text-decoration:none}
             <div class="bar-row"><span class="bar-lbl">After</span><div class="bar-track"><div class="bar-fill after" data-pct="100"></div></div><span class="bar-val">492</span></div>
           </div>
           <div class="delta up">↑ +37%</div>
+        </div>
+      </div>
+      <div class="sem-block">
+        <div class="sem-block-title"><span class="src-label src-sem">Semrush</span> 15 Jun → 8 Sep 2026</div>
+        <div class="sem-kw-list">
+          <div class="sem-kw"><span class="sem-kw-name">Average position</span><span class="sem-kw-move">15.8 → 2.3</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">Keywords in top 10</span><span class="sem-kw-move">9 of 9</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">Keywords in top 3</span><span class="sem-kw-move">5 → 7</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">các cặp tiền tệ trong forex (260)</span><span class="sem-kw-move">→ #1</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">nên giao dịch cặp tiền nào (210)</span><span class="sem-kw-move">→ #1</span></div>
         </div>
       </div>
       <div class="card-story">
@@ -768,6 +826,13 @@ footer a{color:var(--accent);text-decoration:none}
           <div class="sem-kw"><span class="sem-kw-name">divergent กราฟ (110 vol)</span><span class="sem-kw-move">#12 → #9</span></div>
         </div>
       </div>
+      <div class="sem-block">
+        <div class="sem-block-title"><span class="src-label src-gsc">GSC</span> AI Overview · 6 Aug → 6 Sep 2026</div>
+        <div class="sem-kw-list">
+          <div class="sem-kw"><span class="sem-kw-name">AI Overview impressions</span><span class="sem-kw-move">1,198 → 1,932</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">divergence แปล (30 vol)</span><span class="sem-kw-move">#30 → #1</span></div>
+        </div>
+      </div>
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
@@ -826,7 +891,6 @@ footer a{color:var(--accent);text-decoration:none}
     </article>
 
     <!-- ── TH SECTION DIVIDER ─────────────────────────────────────────────── -->
-    <div class="grid-section-label" data-tags="TH"><span>🇹🇭 New Thai Optimisations</span></div>
 
     <!-- ── TH: What is Margin ─────────────────────────────────────────────── -->
     <article class="case-card" data-locale="TH" data-tags="TH">
@@ -911,6 +975,13 @@ footer a{color:var(--accent);text-decoration:none}
           <div class="delta up">↑ +53%</div>
         </div>
       </div>
+      <div class="sem-block">
+        <div class="sem-block-title"><span class="src-label src-gsc">GSC</span> AI Overview · 3 Aug → 6 Sep 2026</div>
+        <div class="sem-kw-list">
+          <div class="sem-kw"><span class="sem-kw-name">AI Overview impressions</span><span class="sem-kw-move">439 → 944</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">Avg position (Semrush)</span><span class="sem-kw-move">11.9 → 9.7</span></div>
+        </div>
+      </div>
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
         <div class="story-body">
@@ -953,6 +1024,12 @@ footer a{color:var(--accent);text-decoration:none}
             <div class="bar-row"><span class="bar-lbl">After</span><div class="bar-track"><div class="bar-fill after" data-pct="100"></div></div><span class="bar-val">607</span></div>
           </div>
           <div class="delta up">↑ +125%</div>
+        </div>
+      </div>
+      <div class="sem-block">
+        <div class="sem-block-title"><span class="src-label src-gsc">GSC</span> AI Overview · 7 Aug → 6 Sep 2026</div>
+        <div class="sem-kw-list">
+          <div class="sem-kw"><span class="sem-kw-name">AI Overview impressions</span><span class="sem-kw-move">186 → 578</span></div>
         </div>
       </div>
       <div class="card-story">
@@ -1007,6 +1084,14 @@ footer a{color:var(--accent);text-decoration:none}
           <div class="sem-kw"><span class="sem-kw-name">เทรด ทอง คํา forex (90 vol)</span><span class="sem-kw-move">#13 → #1</span></div>
           <div class="sem-kw"><span class="sem-kw-name">trade ทอง forex (30 vol)</span><span class="sem-kw-move">#13 → #1</span></div>
         </div>
+      </div>
+      <div class="sem-block">
+        <div class="sem-block-title"><span class="src-label src-gsc">GSC</span> AI Overview · 5 Aug → 6 Sep 2026</div>
+        <div class="sem-kw-list">
+          <div class="sem-kw"><span class="sem-kw-name">AI Overview impressions</span><span class="sem-kw-move">6 → 973</span></div>
+          <div class="sem-kw"><span class="sem-kw-name">เทรดทอง forex (1,300 vol)</span><span class="sem-kw-move">#17 → #1</span></div>
+        </div>
+        <p style="font-size:10.5px;color:var(--muted);line-height:1.55;margin-top:.6rem;font-family:var(--mono)">Recovered from an effectively zero baseline — stated as absolutes rather than a percentage.</p>
       </div>
       <div class="card-story">
         <button class="story-btn" aria-expanded="false" onclick="toggle(this)">What I did <span class="story-icon">⌄</span></button>
@@ -1155,6 +1240,48 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="section-header">
     <span class="section-title">GEO & AEO</span>
     <span class="section-count">— Quick Questions category · collaborative project</span>
+  </div>
+
+  <!-- ── AI OVERVIEW VISIBILITY (GSC Generative AI report) ─────────────────── -->
+  <div class="aio-wrap">
+    <div class="aio-head">
+      <div>
+        <div class="aio-title">AI Overview &amp; AI Mode visibility</div>
+        <div class="aio-sub">First-party Google data · Search Console Generative AI report · 7 Jun – 6 Sep 2026</div>
+      </div>
+      <span class="src-label src-gsc">GSC</span>
+    </div>
+
+    <div class="aio-stats">
+      <div class="aio-stat"><div class="aio-stat-val">92,631</div><div class="aio-stat-lbl">AI Overview impressions<br>Quick Questions category</div></div>
+      <div class="aio-stat"><div class="aio-stat-val">14,980</div><div class="aio-stat-lbl">Peak week<br>9–15 Aug 2026</div></div>
+      <div class="aio-stat"><div class="aio-stat-val">1,000</div><div class="aio-stat-lbl">Pages surfaced<br>in AI answers</div></div>
+      <div class="aio-stat"><div class="aio-stat-val">214</div><div class="aio-stat-lbl">Countries<br>reached</div></div>
+    </div>
+
+    <div class="aio-bars"><div class="aio-bar" style="height:2%" title="0 impressions"></div><div class="aio-bar" style="height:2%" title="6 impressions"></div><div class="aio-bar" style="height:2%" title="21 impressions"></div><div class="aio-bar" style="height:6%" title="878 impressions"></div><div class="aio-bar" style="height:22%" title="3,238 impressions"></div><div class="aio-bar" style="height:23%" title="3,383 impressions"></div><div class="aio-bar" style="height:53%" title="7,908 impressions"></div><div class="aio-bar" style="height:73%" title="10,939 impressions"></div><div class="aio-bar" style="height:83%" title="12,384 impressions"></div><div class="aio-bar peak" style="height:100%" title="14,980 impressions"></div><div class="aio-bar" style="height:88%" title="13,196 impressions"></div><div class="aio-bar" style="height:79%" title="11,777 impressions"></div><div class="aio-bar" style="height:82%" title="12,292 impressions"></div></div>
+    <div class="aio-axis"><span>7 Jun</span><span>19 Jul</span><span>30 Aug</span></div>
+
+    <table class="aio-table">
+      <thead><tr><th>Optimised page</th><th>Before</th><th>After</th><th>Change</th></tr></thead>
+      <tbody>
+        <tr><td><span class="aio-lang">VI</span>Forex Trading Sessions</td><td style="font-family:var(--mono)">2,436</td><td style="font-family:var(--mono)">19,939</td><td class="up">+719%</td></tr>
+        <tr><td><span class="aio-lang">VI</span>16 Top Currency Pairs</td><td style="font-family:var(--mono)">350</td><td style="font-family:var(--mono)">1,606</td><td class="up">+359%</td></tr>
+        <tr><td><span class="aio-lang">TH</span>What is Hedging</td><td style="font-family:var(--mono)">186</td><td style="font-family:var(--mono)">578</td><td class="up">+211%</td></tr>
+        <tr><td><span class="aio-lang">VI</span>Gold XAU Trading Guide</td><td style="font-family:var(--mono)">826</td><td style="font-family:var(--mono)">2,287</td><td class="up">+177%</td></tr>
+        <tr><td><span class="aio-lang">TH</span>Forex Indicators</td><td style="font-family:var(--mono)">439</td><td style="font-family:var(--mono)">944</td><td class="up">+115%</td></tr>
+        <tr><td><span class="aio-lang">TH</span>What is Divergence</td><td style="font-family:var(--mono)">1,198</td><td style="font-family:var(--mono)">1,932</td><td class="up">+61%</td></tr>
+        <tr class="total"><td>Six pages combined</td><td style="font-family:var(--mono)">5,435</td><td style="font-family:var(--mono)">27,286</td><td class="up">+402%</td></tr>
+      </tbody>
+    </table>
+
+    <p class="aio-note">
+      Each page compared over matched equal-length windows either side of its optimisation date; median change was +194%.
+      A seventh Thai page recovered from an effectively zero baseline (6 impressions over 33 days) and is excluded here —
+      the percentage would be meaningless. Google's Generative AI report only began collecting data in early June 2026,
+      so the ramp above partly reflects when reporting started; the sustained ~12,000 impressions per week since August
+      is the more meaningful figure. The report gives impressions only, not clicks or position.
+    </p>
   </div>
 
   <!-- HERO CARD -->
@@ -1458,11 +1585,6 @@ function filterCards(btn){
     else{c.dataset.hidden='1';}
   });
   // Show/hide section divider
-  var div=document.querySelector('.grid-section-label');
-  if(div){
-    var anyTH=f==='all'||f==='TH'||f==='url';
-    div.style.display=anyTH?'':'none';
-  }
   document.getElementById('visible-count').textContent='— '+count+' result'+(count===1?'':'s');
 }
 
