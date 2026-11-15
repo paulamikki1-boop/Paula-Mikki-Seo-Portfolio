@@ -82,7 +82,20 @@ nav{position:sticky;top:0;z-index:100;background:rgba(244,248,252,.93);backdrop-
 
 /* CARD */
 .case-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
-.case-card[data-hidden]{display:none}
+.case-card[data-hidden],.case-card[data-collapsed]{display:none}
+.show-more-wrap{text-align:center;margin-top:1.75rem}
+.show-more{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;padding:9px 20px;border-radius:20px;border:1px solid var(--accent-mid);background:var(--surface);color:var(--accent);cursor:pointer;transition:all .15s}
+.show-more:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.show-more[hidden]{display:none}
+/* HERO CTA */
+.hero-cta{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:2.5rem}
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;text-decoration:none;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);transition:all .15s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--text);border-color:var(--text)}
+.btn-ghost{background:var(--surface);color:var(--accent);border-color:var(--accent-mid)}
+.btn-ghost:hover{background:var(--accent-light)}
+.hero-cta .txt-link{font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none;padding:0 .4rem}
+.hero-cta .txt-link:hover{text-decoration:underline}
 .case-card:hover{border-color:var(--accent-mid);box-shadow:0 4px 24px rgba(15,58,95,.10)}
 .case-card.featured{border-color:var(--accent-mid);border-width:1.5px}
 .badge-featured{display:inline-block;background:var(--accent-light);color:var(--accent);font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-bottom:.6rem}
@@ -151,7 +164,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(244,248,252,.93);backdrop-
 .geo-stat{background:rgba(255,255,255,.04);padding:.85rem 1rem}
 .geo-stat-val{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:#fff;line-height:1;margin-bottom:.25rem}
 .geo-stat-val .u{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.5)}
-.geo-stat-lbl{font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.03em}
+.geo-stat-lbl{font-size:10px;color:rgba(255,255,255,.65);letter-spacing:.03em}
 
 /* AI OVERVIEW (GSC Generative AI report) */
 .aio-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem}
@@ -271,15 +284,16 @@ footer a{color:var(--accent);text-decoration:none}
       <h1>I find pages Google has quietly stopped showing.</h1>
       <p class="hero-sub" style="margin-bottom:1rem">I'm Paula. I optimise English articles for a finance education library at Vantage Markets, rebuild them for Vietnamese and Thai search, and fix the technical layer underneath — URL structure, broken links, schema, internal linking. An article can be accurate, well written, and still invisible, and the cause is usually in one of those three places.</p>
       <p class="hero-sub" style="margin-bottom:1.5rem">Alongside that I've written 1,000+ GEO/AEO posts for a newly launched answer-engine category, and built the AI-assisted workflows behind a localisation programme covering 7 languages.</p>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem">
-        <a href="mailto:paulamikki1@gmail.com" style="font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;background:var(--accent-light);padding:4px 11px;border-radius:5px">paulamikki1@gmail.com</a>
-        <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;background:var(--accent-light);padding:4px 11px;border-radius:5px">LinkedIn ↗</a>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:paulamikki1@gmail.com">Get in touch</a>
+        <a class="btn btn-ghost" href="#work">See case studies <span aria-hidden="true">↓</span></a>
+        <a class="txt-link" href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
     </div>
 
     <figure class="hero-portrait">
       <img src="paula.jpg" alt="Paula Mikki Tindoc">
-      <figcaption>Kuala Lumpur — relocating to Germany, Oct 2026. Open to remote part-time roles.</figcaption>
+      <figcaption>Kuala Lumpur — relocating to Germany. Open to remote part-time roles.</figcaption>
     </figure>
   </div>
 
@@ -1232,6 +1246,7 @@ footer a{color:var(--accent);text-decoration:none}
     </article>
 
   </div><!-- /case-grid -->
+  <div class="show-more-wrap"><button class="show-more" id="show-more" type="button" aria-controls="grid" aria-expanded="false" onclick="toggleMore()">Show more</button></div>
 </main>
 
 <!-- ── GEO & AEO SECTION ───────────────────────────────────────── -->
@@ -1331,25 +1346,25 @@ footer a{color:var(--accent);text-decoration:none}
         <line x1="40" y1="140" x2="810" y2="140" stroke="#E5E7EB" stroke-width="1"/>
         <line x1="40" y1="175" x2="810" y2="175" stroke="#E5E7EB" stroke-width="1"/>
         <!-- Y labels -->
-        <text x="35" y="24" text-anchor="end" font-size="9" fill="#9CA3AF">900</text>
-        <text x="35" y="64" text-anchor="end" font-size="9" fill="#9CA3AF">650</text>
-        <text x="35" y="104" text-anchor="end" font-size="9" fill="#9CA3AF">400</text>
-        <text x="35" y="144" text-anchor="end" font-size="9" fill="#9CA3AF">150</text>
-        <text x="35" y="179" text-anchor="end" font-size="9" fill="#9CA3AF">0</text>
+        <text x="35" y="24" text-anchor="end" font-size="9" fill="#5B7185">900</text>
+        <text x="35" y="64" text-anchor="end" font-size="9" fill="#5B7185">650</text>
+        <text x="35" y="104" text-anchor="end" font-size="9" fill="#5B7185">400</text>
+        <text x="35" y="144" text-anchor="end" font-size="9" fill="#5B7185">150</text>
+        <text x="35" y="179" text-anchor="end" font-size="9" fill="#5B7185">0</text>
         <!-- X labels weeks 1-13 -->
-        <text x="98"  y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W1</text>
-        <text x="156" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W2</text>
-        <text x="214" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W3</text>
-        <text x="272" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W4</text>
-        <text x="330" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W5</text>
-        <text x="388" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W6</text>
-        <text x="446" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W7</text>
-        <text x="504" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W8</text>
-        <text x="562" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W9</text>
-        <text x="620" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W10</text>
-        <text x="678" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W11</text>
-        <text x="736" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W12</text>
-        <text x="794" y="193" text-anchor="middle" font-size="9" fill="#9CA3AF">W13</text>
+        <text x="98"  y="193" text-anchor="middle" font-size="9" fill="#5B7185">W1</text>
+        <text x="156" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W2</text>
+        <text x="214" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W3</text>
+        <text x="272" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W4</text>
+        <text x="330" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W5</text>
+        <text x="388" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W6</text>
+        <text x="446" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W7</text>
+        <text x="504" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W8</text>
+        <text x="562" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W9</text>
+        <text x="620" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W10</text>
+        <text x="678" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W11</text>
+        <text x="736" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W12</text>
+        <text x="794" y="193" text-anchor="middle" font-size="9" fill="#5B7185">W13</text>
 
         <!-- Scale: max impressions/100 = 882, max clicks = 536 -->
         <!-- impr/100 mapped to 0-900 range = 155px height (175 to 20) -->
@@ -1562,7 +1577,7 @@ footer a{color:var(--accent);text-decoration:none}
 
 
 <footer>
-  <p>paulamikki1@gmail.com &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp; Kuala Lumpur, Malaysia (relocating to Germany, Oct 2026)</p>
+  <p>paulamikki1@gmail.com &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp; Kuala Lumpur, Malaysia (relocating to Germany)</p>
 </footer>
 
 <script>
@@ -1584,9 +1599,32 @@ function filterCards(btn){
     if(show){delete c.dataset.hidden;count++;}
     else{c.dataset.hidden='1';}
   });
+  expanded=false;
+  applyCollapse();
   // Show/hide section divider
   document.getElementById('visible-count').textContent='— '+count+' result'+(count===1?'':'s');
 }
+
+// Show the top few case studies first (featured ones lead), the rest behind "Show more"
+var LIMIT=6,expanded=false;
+function applyCollapse(){
+  var vis=[].slice.call(document.querySelectorAll('.case-card:not([data-hidden])'));
+  var lead=vis.filter(function(c){return c.classList.contains('featured');})
+    .concat(vis.filter(function(c){return !c.classList.contains('featured');})).slice(0,LIMIT);
+  vis.forEach(function(c){
+    if(expanded||lead.indexOf(c)>-1){delete c.dataset.collapsed;}else{c.dataset.collapsed='1';}
+  });
+  var btn=document.getElementById('show-more'),extra=vis.length-lead.length;
+  btn.hidden=extra<=0;
+  btn.setAttribute('aria-expanded',String(expanded));
+  btn.textContent=expanded?'Show fewer':'Show '+extra+' more case stud'+(extra===1?'y':'ies');
+}
+function toggleMore(){
+  expanded=!expanded;
+  applyCollapse();
+  if(!expanded){document.getElementById('work').scrollIntoView();}
+}
+applyCollapse();
 
 // Animate bars on scroll
 var obs=new IntersectionObserver(function(entries){
