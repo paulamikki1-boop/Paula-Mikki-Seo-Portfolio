@@ -27,6 +27,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(244,248,252,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px}
 .nav-name{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--text);text-decoration:none}
+.nav-brand{display:flex;align-items:baseline;gap:1rem}
+.hub-link{font-size:12px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.hub-link:hover{color:var(--accent)}
 .nav-links{display:flex;gap:1.5rem}
 .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .15s}
 .nav-links a:hover{color:var(--accent)}
@@ -251,6 +254,7 @@ footer a{color:var(--accent);text-decoration:none}
 @media(max-width:640px){
   nav{padding:0 1rem}
   .nav-name{flex-shrink:0}
+  .hub-link{display:none}
   .nav-links{gap:.65rem}
   .nav-links a{font-size:11.5px;white-space:nowrap}
   .nav-links a.nav-cta{padding:2px 7px;font-size:11px}
@@ -266,7 +270,10 @@ footer a{color:var(--accent);text-decoration:none}
 <body>
 
 <nav>
-  <a href="#" class="nav-name">paula.mikki</a>
+  <div class="nav-brand">
+    <a href="#" class="nav-name">paula.mikki</a>
+    <a class="hub-link" href="https://paulamikki1-boop.github.io/">← Portfolio</a>
+  </div>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#work">SEO Work</a>
@@ -1577,6 +1584,7 @@ footer a{color:var(--accent);text-decoration:none}
 
 
 <footer>
+  <p style="margin-bottom:.6rem"><a href="https://paulamikki1-boop.github.io/">← Paula Mikki Tindoc</a></p>
   <p>paulamikki1@gmail.com &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp; Kuala Lumpur, Malaysia (relocating to Germany)</p>
 </footer>
 
