@@ -9,15 +9,14 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F4F8FC;--surface:#fff;--text:#0B2137;--muted:#5B7185;
-  /* dark blue = structure & branding; light blue = containers */
-  --accent:#0F3A5F;--accent-light:#E7F1FA;--accent-mid:#B4D3EB;
-  --blue:#2472A8;
-  /* green = gains only (percentages, after-bars, rank movement) */
-  --gain:#0A7B5E;--gain-light:#E6F4F0;
-  --border:#DBE7F1;--warn:#D97706;--r:16px;
-  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
+  --bg:#f5f7fb;--surface:#fff;--text:#0a1628;--muted:#5d6b80;--body:#46546a;
+  --accent:#1e3a5f;--accent-light:#e8f0fe;--accent-mid:#c5d5f5;
+  --blue:#2563eb;--navy:#0a1628;
+  --gain:#0a7b5e;--gain-light:#e3f5ee;
+  --border:#e1e7f0;--warn:#D97706;--r:20px;
+  --mono:'DM Mono',ui-monospace,monospace;--sans:'DM Sans',system-ui,sans-serif;
   --query:'DM Sans','Noto Sans Thai',sans-serif;
+  --shadow:0 1px 2px rgba(10,22,40,.04),0 12px 32px -12px rgba(10,22,40,.14);
 }
 html{scroll-behavior:smooth}
 #work,#geo{scroll-margin-top:76px}
@@ -265,21 +264,185 @@ footer a{color:var(--accent);text-decoration:none}
   .about-grid{grid-template-columns:1fr;gap:2rem}
 }
 @media(prefers-reduced-motion:reduce){.bar-fill{transition:none}}
+
+/* ===== Hub-style redesign layer ===== */
+body{font-size:16px;color:var(--body);position:relative;overflow-x:hidden}
+.backdrop{position:absolute;inset:0 0 auto 0;height:820px;z-index:-1;overflow:hidden}
+.backdrop::before,.backdrop::after{content:"";position:absolute;border-radius:50%;filter:blur(80px)}
+.backdrop::before{width:620px;height:620px;right:-140px;top:-200px;background:radial-gradient(circle,rgba(74,144,217,.42),rgba(74,144,217,0) 70%)}
+.backdrop::after{width:520px;height:520px;left:-180px;top:160px;background:radial-gradient(circle,rgba(10,123,94,.2),rgba(10,123,94,0) 70%)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+html{scroll-padding-top:84px}
+
+nav{height:auto;padding:0;background:rgba(245,247,251,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;display:block}
+.nav-inner{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-brand{align-items:center;gap:16px}
+.nav-name{font-family:var(--sans);font-weight:700;font-size:17px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--gain));color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
+.hub-link{font-size:13px}
+.nav-links{align-items:center;gap:26px}
+.nav-links a{font-size:15px;font-weight:500;color:var(--text)}
+.nav-links a:hover{color:var(--blue)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid transparent;white-space:nowrap;transition:transform .15s,background .15s,border-color .15s}
+.btn-primary,.nav-links a.btn-primary{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 8px 20px -8px rgba(10,22,40,.5)}
+.btn-primary:hover,.nav-links a.btn-primary:hover{background:#14274a;border-color:#14274a;color:#fff;transform:translateY(-1px)}
+.btn-ghost{background:#fff;color:var(--text);border-color:var(--border)}
+.btn-ghost:hover{background:#fff;border-color:#c5d0e0;transform:translateY(-1px)}
+.btn-sm,.nav-links a.btn-sm{padding:9px 16px;font-size:14px;border-radius:10px}
+.hero-cta .txt-link{font-family:var(--sans);font-size:15px;font-weight:600;color:var(--blue);padding:0 .5rem}
+
+.hero,.section,.geo-section{max-width:1120px;padding-left:24px;padding-right:24px}
+.hero{padding-top:48px;padding-bottom:0}
+.hero-grid{grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding-bottom:56px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);padding:7px 14px;border-radius:999px;font-size:12.5px;letter-spacing:.08em;color:var(--accent);margin-bottom:0}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--gain);flex-shrink:0}
+.hero h1{font-size:clamp(38px,5.6vw,64px);font-weight:700;line-height:1.05;letter-spacing:-.035em;color:var(--text);margin:22px 0 20px}
+.hero h1 .g2{background:linear-gradient(90deg,var(--gain),#17a57f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:17px;color:var(--body);max-width:560px;line-height:1.65}
+.hero-cta{margin-top:28px;margin-bottom:0;gap:12px}
+.portrait{position:relative;justify-self:end;width:min(380px,100%)}
+.portrait-frame{border-radius:28px;overflow:hidden;background:#fff;padding:10px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.portrait-frame img{display:block;border-radius:20px;width:100%;aspect-ratio:1/1;height:auto;object-fit:cover}
+.pchip{position:absolute;background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);font-size:13px;line-height:1.3;color:var(--muted)}
+.pchip strong{display:block;color:var(--text);font-size:17px;font-weight:700;letter-spacing:-.01em}
+.pchip .up{color:var(--gain)}
+.pchip-a{left:-44px;top:36px}.pchip-b{right:-22px;bottom:44px}
+
+.tools-block{border-top:none;padding:18px 28px;margin:0 0 72px;background:#fff;border:1px solid var(--border);border-radius:16px;display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap}
+.tools-block h2{margin:0;color:var(--blue);font-size:12.5px;letter-spacing:.08em;white-space:nowrap}
+.tools-block .chips{margin:0;gap:8px}
+.chip{font-size:12.5px;background:var(--bg);border-color:var(--border);border-radius:999px;padding:5px 12px}
+
+.kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.h2{font-size:clamp(28px,3.6vw,40px);line-height:1.12;letter-spacing:-.025em;color:var(--text);font-weight:700;margin-top:10px}
+.section-header{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px;padding-bottom:0;border-bottom:none}
+.section-count{font-size:13px;color:var(--muted);padding-bottom:8px}
+.proof{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch;margin-bottom:24px}
+.qstrip{border-radius:var(--r);box-shadow:var(--shadow);margin-bottom:0}
+.qstrip-head,.qrow{padding-left:1.5rem;padding-right:1.5rem}
+.qstrip-title{font-size:15px}
+.qmove{font-size:12.5px;padding:4px 9px;border-radius:7px;font-weight:500}
+.qnote{margin:0;max-width:none;background:var(--navy);color:#b9c6da;border-radius:28px;padding:32px;font-size:16px;line-height:1.65;display:flex;flex-direction:column;justify-content:center}
+.qnote .tag{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8fbdf0;margin-bottom:12px}
+.qnote strong{color:#fff;font-size:22px;line-height:1.25;letter-spacing:-.02em;margin-bottom:12px;font-weight:700}
+.stats-strip{grid-template-columns:repeat(5,1fr);gap:16px;background:none;border:none;border-radius:0;overflow:visible;margin-bottom:88px}
+.stat-cell{border:1px solid var(--border);border-radius:var(--r);padding:22px}
+.stat-value{font-family:var(--sans);font-weight:700;font-size:32px;letter-spacing:-.03em}
+.stat-value .unit{font-size:22px;font-weight:700;color:var(--blue)}
+.stat-label{font-size:13.5px;margin-top:6px}
+
+.section,.geo-section{padding-bottom:88px}
+.filter-bar{gap:8px;margin-bottom:24px}
+.filter-btn{font-size:12.5px;padding:8px 14px;border-radius:999px}
+.filter-btn:hover,.filter-btn.active{background:var(--navy);border-color:var(--navy)}
+.case-grid{grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:20px}
+.case-card{box-shadow:var(--shadow)}
+.case-card:hover{box-shadow:0 2px 4px rgba(10,22,40,.05),0 24px 48px -16px rgba(10,22,40,.22);border-color:var(--border)}
+.case-card.featured{border-color:var(--accent-mid)}
+.card-top{padding:1.5rem 1.5rem 1rem}
+.card-title{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+.card-locale,.badge-featured{border-radius:999px;padding:4px 10px;font-size:11px}
+.card-meta{font-size:12.5px}.card-date,.card-wks{font-size:11.5px}
+.metrics-row{padding:0 1.5rem 1.25rem}
+.metric{border-radius:14px;padding:1rem}
+.metric-label{font-size:12px}
+.bar-lbl,.bar-val{font-size:10.5px}.bar-lbl{width:34px}
+.delta{font-family:var(--sans);font-weight:700;font-size:22px}
+.sem-block{margin:0 1.5rem 1rem;border-radius:14px;padding:1rem 1.1rem}
+.sem-block-title{font-size:11px}.sem-kw-name{font-size:12px}.sem-kw-move{font-size:12px}
+.story-btn{padding:1rem 1.5rem;font-size:14px;font-weight:600;color:var(--text)}
+.story-body{padding:1rem 1.5rem 1.25rem}
+.story-body p,.story-body li{font-size:14.5px}
+.story-link{font-size:13px;font-family:var(--sans);font-weight:600}
+.show-more{font-family:var(--sans);font-size:15px;font-weight:600;padding:12px 22px;border-radius:12px;border-color:var(--border);color:var(--text);letter-spacing:0}
+.show-more:hover{background:var(--navy);border-color:var(--navy)}
+
+.aio-wrap,.chart-wrap,.top-posts{box-shadow:var(--shadow)}
+.aio-wrap,.chart-wrap{padding:28px}
+.aio-title{font-size:20px;letter-spacing:-.01em}.aio-sub{font-size:13px}
+.aio-stat-val{font-family:var(--sans);font-weight:700;font-size:24px;letter-spacing:-.02em}
+.aio-stat-lbl{font-size:12px}
+.aio-table{font-size:14px}.aio-table th{font-size:11px}
+.aio-note{font-size:13px}
+.geo-hero{background:linear-gradient(135deg,#0a1628 0%,#173463 60%,#0a5c50 130%);border-radius:28px;padding:40px}
+.geo-eyebrow{font-size:12px;color:#8fbdf0}
+.geo-title{font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.geo-sub{font-size:16px;color:#c9d5e6}
+.geo-collab{font-size:12px}
+.geo-stats{border-radius:16px}
+.geo-stat{padding:1.1rem 1.25rem}
+.geo-stat-val{font-family:var(--sans);font-weight:700;font-size:28px}
+.geo-stat-lbl{font-size:12px}
+.chart-title,.top-posts-title{font-size:16px}
+.post-slug{font-size:12.5px}.post-pill{font-size:11.5px;border-radius:7px;padding:4px 9px}
+.process-grid{gap:20px}
+.process-card{padding:26px}
+.process-num{font-size:12px;color:var(--blue);font-weight:500}
+.process-title{font-size:18px;letter-spacing:-.01em;margin:8px 0}
+.process-body{font-size:14.5px}.process-example{font-size:12.5px;border-radius:10px}
+
+.contact-outer{padding:0 24px}
+.contact{max-width:1072px;margin:0 auto;background:linear-gradient(135deg,#0a1628 0%,#173463 60%,#0a5c50 130%);border-radius:32px;padding:56px;color:#c9d5e6;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.contact .h2{color:#fff;margin-top:0}
+.contact p{margin-top:12px;font-size:17px;max-width:460px}
+.contact-links{display:grid;gap:10px}
+.contact-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:15px 18px;color:#fff;font-weight:500;font-size:15.5px;text-decoration:none;transition:background .15s}
+.contact-links a:hover{background:rgba(255,255,255,.16)}
+.contact-links small{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#9fb4d0;font-weight:400}
+footer{max-width:1120px;margin:0 auto;border-top:none;padding:40px 24px 48px;text-align:left;font-family:var(--sans);font-size:14px;letter-spacing:0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{color:var(--muted)}footer a:hover{color:var(--text)}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:44px;padding-bottom:48px}
+  .portrait{justify-self:center;width:min(320px,82%);order:-1;margin-top:20px}
+  .pchip-a{left:-22px;top:-20px}.pchip-b{right:-18px;bottom:-20px}
+  .proof,.contact{grid-template-columns:1fr}
+  .stats-strip{grid-template-columns:repeat(2,1fr);margin-bottom:64px}
+  .section-header{flex-direction:column;align-items:start;gap:4px}
+  .contact{padding:36px 26px;border-radius:26px}
+  .section,.geo-section{padding-bottom:64px}
+  .case-grid{grid-template-columns:1fr}
+  .tools-block{margin-bottom:56px}
+}
+@media(max-width:760px){
+  .nav-links a:not(.btn){display:none}
+  .hub-link{display:inline}
+}
+@media(max-width:640px){
+  .hero{padding:16px 16px 0}
+  .section,.geo-section{padding-left:16px;padding-right:16px}
+  .nav-inner{padding:12px 16px}
+  .contact-outer{padding:0 16px}
+  .nav-name .full{display:none}
+  .hero-cta .btn{flex:1 1 100%}
+  .qnote{padding:24px;border-radius:22px}
+  .geo-hero{padding:26px 22px;border-radius:22px}
+  .geo-title{font-size:22px}
+  .aio-wrap,.chart-wrap{padding:20px}
+  .tools-block{padding:16px 18px}
+  .stat-cell{padding:18px}.stat-value{font-size:26px}
+  footer{padding:32px 16px 40px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-brand">
-    <a href="#" class="nav-name">paula.mikki</a>
-    <a class="hub-link" href="https://paulamikki1-boop.github.io/">← Portfolio</a>
-  </div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#work">SEO Work</a>
-    <a href="#geo">GEO & AEO</a>
-    <a href="mailto:paulamikki1@gmail.com">Contact</a>
-    <a class="nav-cta" href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+<div class="backdrop" aria-hidden="true"></div>
+<nav aria-label="Main">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <a href="#" class="nav-name"><span class="brand-mark">P</span>Paula <span class="full">Mikki Tindoc</span></a>
+      <a class="hub-link" href="https://paulamikki1-boop.github.io/">← Portfolio</a>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">SEO Work</a>
+      <a href="#geo">GEO &amp; AEO</a>
+      <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a class="btn btn-primary btn-sm" href="#contact">Get in touch</a>
+    </div>
   </div>
 </nav>
 
@@ -287,26 +450,47 @@ footer a{color:var(--accent);text-decoration:none}
 <header class="hero" id="about">
   <div class="hero-grid">
     <div>
-      <p class="eyebrow">SEO Specialist · English, Vietnamese &amp; Thai</p>
-      <h1>I find pages Google has quietly stopped showing.</h1>
+      <p class="eyebrow"><span class="dot"></span>SEO Specialist · English, Vietnamese &amp; Thai</p>
+      <h1>I find pages Google has <span class="g2">quietly stopped showing</span>.</h1>
       <p class="hero-sub" style="margin-bottom:1rem">I'm Paula. I optimise English articles for a finance education library at Vantage Markets, rebuild them for Vietnamese and Thai search, and fix the technical layer underneath — URL structure, broken links, schema, internal linking. An article can be accurate, well written, and still invisible, and the cause is usually in one of those three places.</p>
-      <p class="hero-sub" style="margin-bottom:1.5rem">Alongside that I've written 1,000+ GEO/AEO posts for a newly launched answer-engine category, and built the AI-assisted workflows behind a localisation programme covering 7 languages.</p>
+      <p class="hero-sub">Alongside that I've written 1,000+ GEO/AEO posts for a newly launched answer-engine category, and built the AI-assisted workflows behind a localisation programme covering 7 languages.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="mailto:paulamikki1@gmail.com">Get in touch</a>
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
         <a class="btn btn-ghost" href="#work">See case studies <span aria-hidden="true">↓</span></a>
         <a class="txt-link" href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
     </div>
 
-    <figure class="hero-portrait">
-      <img src="paula.jpg" alt="Paula Mikki Tindoc">
-      <figcaption>Kuala Lumpur — relocating to Germany. Open to remote part-time roles.</figcaption>
-    </figure>
+    <div class="portrait">
+      <div class="portrait-frame"><img src="paula.webp" alt="Paula Mikki Tindoc" width="440" height="440"></div>
+      <div class="pchip pchip-a"><strong><span class="up">#17 → #1</span></strong>Thai gold-trading keyword</div>
+      <div class="pchip pchip-b"><strong>Kuala Lumpur</strong>Open to remote part-time roles</div>
+    </div>
   </div>
 
+  <div id="skills" class="tools-block">
+    <h2>Tools &amp; skills</h2>
+    <div class="chips">
+      <span class="chip">SEMrush</span>
+      <span class="chip">Google Search Console</span>
+      <span class="chip">Technical SEO audits</span>
+      <span class="chip">Keyword research</span>
+      <span class="chip">Schema markup</span>
+      <span class="chip">URL optimisation</span>
+      <span class="chip">Hreflang (7 markets)</span>
+      <span class="chip">Multilingual SEO</span>
+      <span class="chip">GEO / AEO</span>
+      <span class="chip">AI prompting workflows</span>
+      <span class="chip">WordPress</span>
+      <span class="chip">Excel / SPSS</span>
+    </div>
+  </div>
+
+  <div class="section-header"><div><span class="kicker">Proof</span><h2 class="h2">Queries that moved, and where they landed</h2></div></div>
+  <div class="proof">
   <div class="qstrip">
     <div class="qstrip-head">
-      <span class="qstrip-title">Queries that moved, and where they landed</span>
+      <span class="qstrip-title">Rank movement</span>
       <span class="qstrip-src">SEMrush</span>
     </div>
 
@@ -328,7 +512,8 @@ footer a{color:var(--accent);text-decoration:none}
     </div>
   </div>
 
-  <p class="qnote">That second one is the whole job in miniature. Thai traders search the English word plus “แปล” — translate — which tells you they don't know the concept yet and want a definition first. You won't find that in English keyword research.</p>
+  <div class="qnote"><span class="tag">Why it matters</span><strong>The second one is the whole job in miniature.</strong><span>Thai traders search the English word plus “แปล” — translate — which tells you they don't know the concept yet and want a definition first. You won't find that in English keyword research.</span></div>
+  </div><!-- /proof -->
 
   <div class="stats-strip">
     <div class="stat-cell">
@@ -353,28 +538,11 @@ footer a{color:var(--accent);text-decoration:none}
     </div>
   </div>
 
-  <div id="skills" class="tools-block">
-    <h2>Tools &amp; skills</h2>
-    <div class="chips">
-      <span class="chip">SEMrush</span>
-      <span class="chip">Google Search Console</span>
-      <span class="chip">Technical SEO audits</span>
-      <span class="chip">Keyword research</span>
-      <span class="chip">Schema markup</span>
-      <span class="chip">URL optimisation</span>
-      <span class="chip">Hreflang (7 markets)</span>
-      <span class="chip">Multilingual SEO</span>
-      <span class="chip">GEO / AEO</span>
-      <span class="chip">AI prompting workflows</span>
-      <span class="chip">WordPress</span>
-      <span class="chip">Excel / SPSS</span>
-    </div>
-  </div>
 </header>
 
 <main id="work" class="section">
   <div class="section-header">
-    <span class="section-title">Case studies</span>
+    <div><span class="kicker">SEO work</span><h2 class="h2">Case studies</h2></div>
     <span class="section-count" id="visible-count">— 18 results</span>
   </div>
 
@@ -1260,8 +1428,8 @@ footer a{color:var(--accent);text-decoration:none}
 <section id="geo" class="geo-section">
 
   <div class="section-header">
-    <span class="section-title">GEO & AEO</span>
-    <span class="section-count">— Quick Questions category · collaborative project</span>
+    <div><span class="kicker">AI search</span><h2 class="h2">GEO &amp; AEO</h2></div>
+    <span class="section-count">Quick Questions category · collaborative project</span>
   </div>
 
   <!-- ── AI OVERVIEW VISIBILITY (GSC Generative AI report) ─────────────────── -->
@@ -1583,9 +1751,22 @@ footer a{color:var(--accent);text-decoration:none}
 </section>
 
 
+<div class="contact-outer">
+<div class="contact" id="contact">
+  <div>
+    <h2 class="h2">Let’s talk.</h2>
+    <p>Based in Kuala Lumpur, Malaysia, and open to remote part-time roles. Email or LinkedIn is best.</p>
+  </div>
+  <div class="contact-links">
+    <a href="mailto:paulamikki1@gmail.com"><span><small>Email</small>paulamikki1@gmail.com</span><span aria-hidden="true">↗</span></a>
+    <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener"><span><small>LinkedIn</small>Paula Mikki Tindoc</span><span aria-hidden="true">↗</span></a>
+  </div>
+</div>
+</div>
+
 <footer>
-  <p style="margin-bottom:.6rem"><a href="https://paulamikki1-boop.github.io/">← Paula Mikki Tindoc</a></p>
-  <p>paulamikki1@gmail.com &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/paula-mikki-evardo-tindoc-/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp; Kuala Lumpur, Malaysia (relocating to Germany)</p>
+  <span>© 2026 Paula Mikki Tindoc · Kuala Lumpur, Malaysia</span>
+  <span><a href="https://paulamikki1-boop.github.io/">← Paula Mikki Tindoc</a> &nbsp;·&nbsp; <a href="https://paulamikki1-boop.github.io/paula-tutor-profile/">Tutoring</a></span>
 </footer>
 
 <script>
